@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  json_server:
+    image: williamyeh/json-server
+    volumes: 
+      - "./data:/data"
+    command: "--watch db.json"
+  lite_server:
+    image: gecko8/lite-server
+    volumes: 
+      - "./src:/src"
+  nginx_web:
+    image: nginx
+    volumes: 
+      - "./conf:/etc/nginx"
+    ports:
+      - "8080:80"
+      - "8081:81"
+    links: 
+      - json_server
+      - lite_server

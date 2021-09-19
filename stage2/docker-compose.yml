@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  web:
+    image: gecko8/lite-server
+    ports: 
+      - 5000:3000
+    volumes: 
+      - "./src:/src"

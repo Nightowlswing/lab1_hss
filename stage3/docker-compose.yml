@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  web:
+    image: williamyeh/json-server
+    ports: 
+      - 3002:3000
+    volumes: 
+      - "./data:/data"
+    command: "--watch db.json"
+
