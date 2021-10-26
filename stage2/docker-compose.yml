@@ -1,8 +1,12 @@
 version: "3.9"
+
 services:
-  web:
-    image: gecko8/lite-server
-    ports: 
-      - 5000:3000
-    volumes: 
-      - "./src:/src"
+  lite:
+    container_name: "lite_server"
+    build:
+      context: "./"
+      dockerfile: "./Dockerfile"
+    ports:
+        - "5000:3000"
+    restart: "no"
+    command: "lite-server"

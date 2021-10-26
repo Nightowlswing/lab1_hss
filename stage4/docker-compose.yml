@@ -1,21 +1,27 @@
 version: "3.9"
+
 services:
-  json_server:
-    image: williamyeh/json-server
+  lite_serv:
+    build:
+      context: "./"
+      dockerfile: "./lite/Dockerfile"
+    restart: "no"
+    command: "lite-server"
+  json_serv:
+    build:
+      context: "./"
+      dockerfile: "./json/Dockerfile"
+    restart: "no"
     volumes: 
       - "./data:/data"
-    command: "--watch db.json"
-  lite_server:
-    image: gecko8/lite-server
-    volumes: 
-      - "./src:/src"
+    command: "--watch /db.json"
   nginx_web:
     image: nginx
     volumes: 
       - "./conf:/etc/nginx"
     ports:
-      - "8080:80"
-      - "8081:81"
+      - "2000:80"
+      - "1000:81"
     links: 
-      - json_server
-      - lite_server
+      - json_serv
+      - lite_serv
